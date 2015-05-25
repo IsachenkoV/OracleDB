@@ -1,0 +1,70 @@
+﻿<Window x:Class="DataBase.Views.TableCreationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="http://www.caliburnproject.org"
+        Title="TableCreationView" Height="500" Width="500" Name="TableCreation">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/> 
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Имя таблицы" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap"/>
+        <TextBox Text="{Binding TableName}" Grid.Row="0" Grid.Column="1"/>
+        <DataGrid SelectedIndex="{Binding ElementName=TableCreation, Path=DataContext.Index, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Columns}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" CanUserDeleteRows="True" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="IsPrimaryKey" Binding="{Binding IsPrimaryKey}"></DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn Header="IsNotNull" Binding="{Binding IsNotNull}"></DataGridCheckBoxColumn>
+
+                <DataGridTemplateColumn Header ="ForeignKeyTable">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ForeignKeyTable}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedValue="{Binding Path=ForeignKeyTable, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.TableList, NotifyOnSourceUpdated=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header ="ForeignKeyColumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ForeignKeyColumn}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedValue="{Binding Path=ForeignKeyColumn, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.FieldList, NotifyOnSourceUpdated=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header ="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedValue="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.TypeList, NotifyOnSourceUpdated=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button cal:Message.Attach ="Save" Content="Сохранить" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Width="150"/>
+        <Button cal:Message.Attach ="AddColumn" Content="Добавить столбец" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Width="150"/>
+    </Grid>
+</Window>
