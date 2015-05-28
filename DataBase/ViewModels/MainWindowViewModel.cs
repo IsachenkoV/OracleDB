@@ -59,7 +59,7 @@ namespace DataBase.ViewModels
         {
             if (CurTableName!= null && TableNames.Contains(CurTableName.ToUpper()))
             {
-                _manager.ShowWindow(new TableDataChangeViewModel(_manager, _provider, CurTableName));
+                _manager.ShowWindow(new TableDataChangeViewModel(_provider, CurTableName));
             }
             else
             {
@@ -71,7 +71,7 @@ namespace DataBase.ViewModels
         {
             if (CurTableName != null && TableNames.Contains(CurTableName.ToUpper()))
             {
-                _manager.ShowWindow(new TableStructChangeViewModel());
+                _manager.ShowWindow(new TableStructChangeViewModel(_provider, CurTableName));
             }
             else
             {

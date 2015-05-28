@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,8 @@ namespace DataBase.DBLogic
         DbDataReader ExecuteCommand(string command);
         List<string> GetFieldsOfTable(string tableName);
         bool HaveChanges { set; get; }
+        DataTable GetContentOfTable(string tableName);
+        void UpdateContentOfTable(string tableName, DataTable content);
+        void DeleteTable(string tableName);
     }
 }

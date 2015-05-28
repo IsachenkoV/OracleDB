@@ -1,10 +1,14 @@
 ﻿<Window x:Class="DataBase.Views.TableDataChangeView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TableDataChangeView" Height="300" Width="300">
+        xmlns:cal="http://www.caliburnproject.org"
+        Title="TableDataChangeView" Height="600" Width="600" Icon="page.ico">
     <Grid>
-        <DataGrid CanUserSortColumns="False" CanUserReorderColumns="False">
-            
-        </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row ="0" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" CanUserSortColumns="False" CanUserReorderColumns="False" ItemsSource="{Binding Content, UpdateSourceTrigger = PropertyChanged}"/>
+        <Button cal:Message.Attach="Commit" Grid.Row = "1" Width="150" Content="Сохранить изменения" Margin="2"/>
     </Grid>
 </Window>

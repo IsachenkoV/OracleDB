@@ -33,7 +33,7 @@ namespace DataBase.ViewModels
                 DbDataReader reader = _provider.ExecuteCommand(Command);
                 if (reader.VisibleFieldCount == 0)
                 {
-                    MessageBox.Show(Resources.Completed_successfully, Resources.SuccessMessage);
+                    MessageBox.Show(Resources.CompletedSuccessfully, Resources.SuccessMessage);
                     _provider.HaveChanges = true;
                 }
                 else

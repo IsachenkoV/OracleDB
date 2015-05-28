@@ -63,9 +63,18 @@ namespace DataBase.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Command completed successfully.
         /// </summary>
-        internal static string Completed_successfully {
+        internal static string CompletedSuccessfully {
             get {
-                return ResourceManager.GetString("Completed_successfully", resourceCulture);
+                return ResourceManager.GetString("CompletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Table dropped!.
+        /// </summary>
+        internal static string DeleteSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSuccess", resourceCulture);
             }
         }
         
@@ -79,7 +88,7 @@ namespace DataBase.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Выбранной таблицы нет в списке.
+        ///   Ищет локализованную строку, похожую на Table does not exist.
         /// </summary>
         internal static string NoThatTable {
             get {

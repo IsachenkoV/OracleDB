@@ -1,26 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Caliburn.Micro;
 using DataBase.DBLogic;
+using DataBase.Properties;
+using Screen = Caliburn.Micro.Screen;
 
 namespace DataBase.ViewModels
 {
     class TableDataChangeViewModel:Screen
     {
-        private IWindowManager _manager;
         private IDataBaseServiceProvider _provider;
         private string _tableName;
-        public TableDataChangeViewModel(IWindowManager manager, IDataBaseServiceProvider provider, String tableName)
+        private DataTable _content;
+
+        public DataTable Content
         {
-            _manager = manager;
+            set
+            {
+                if (!value.Equals(_content))
+                    _content = value;
+                NotifyOfPropertyChange(() => Content);
+            }
+            get
+            {
+                return _content;
+            }
+        }
+
+        public TableDataChangeViewModel(IDataBaseServiceProvider provider, String tableName)
+        {
             _provider = provider;
             _tableName = tableName;
             DisplayName = string.Concat("Change table: ", tableName);
+            Content = _provider.GetContentOfTable(_tableName);
         }
 
-        //TODO Вьюха для изменения таблицы. я ничего не сделяль.
+        public void Commit()
+        {
+            bool success = true;
+            try
+            {
+                _provider.UpdateContentOfTable(_tableName, Content);
+            }
+            catch (Exception e)
+            {
+                success = false;
+                MessageBox.Show(e.Message, Resources.ErrorMessage);
+            }
+
+            if (success)
+                MessageBox.Show(Resources.CompletedSuccessfully, Resources.SuccessMessage);
+        }
     }
 }

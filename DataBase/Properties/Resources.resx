@@ -120,13 +120,16 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="Completed_successfully" xml:space="preserve">
+  <data name="CompletedSuccessfully" xml:space="preserve">
     <value>Command completed successfully</value>
   </data>
   <data name="SuccessMessage" xml:space="preserve">
     <value>Success!</value>
   </data>
   <data name="NoThatTable" xml:space="preserve">
-    <value>Выбранной таблицы нет в списке</value>
+    <value>Table does not exist</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Table dropped!</value>
   </data>
 </root>

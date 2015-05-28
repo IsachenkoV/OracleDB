@@ -122,7 +122,7 @@ namespace DataBase.ViewModels
 
             if (!errorOccured)
             {
-                MessageBox.Show(Resources.Completed_successfully, Resources.SuccessMessage);
+                MessageBox.Show(Resources.CompletedSuccessfully, Resources.SuccessMessage);
                 _provider.HaveChanges = true;
             }
         }

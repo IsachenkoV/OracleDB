@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,39 @@ namespace DataBase.DBLogic
         private BindableCollection<string> _observableTableCollection;
 
         public bool HaveChanges { set; get; }
+        public DataTable GetContentOfTable(string tableName)
+        {
+            using (var c = _connection.CreateCommand())
+            {
+                c.CommandText = string.Format("select * from {0}", tableName);
+                using (var adapter = new OracleDataAdapter(c))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+
+        public void UpdateContentOfTable(string tableName, DataTable content)
+        {
+            using (var c = _connection.CreateCommand())
+            {
+                c.CommandText = string.Format("select * from {0}", tableName);
+                using (var adapter = new OracleDataAdapter(c))
+                {
+                    var builder = new OracleCommandBuilder(adapter);
+                    adapter.UpdateCommand = builder.GetUpdateCommand();
+                    adapter.Update(content);
+                }
+            }
+        }
+
+        public void DeleteTable(string tableName)
+        {
+            var text = string.Format("drop table {0}", tableName);
+            ExecuteCommand(text);
+        }
 
         public OracleDataBaseServiceProvider(string ip, string tblspace, string user, string pass)
         {
