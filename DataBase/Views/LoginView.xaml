@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:views="clr-namespace:DataBase.Views"
-        Title="Login form" Height="276.315" Width="311.278" ResizeMode="NoResize">
+        Title="Login form" Height="276.315" Width="311.278" ResizeMode="NoResize" Icon="Db2.ico">
     <Grid>
         <Label Content="Чтобы войти в систему, введите данные." HorizontalAlignment="Center" Height="38" Margin="0,10,0,0" VerticalAlignment="Top" Width="246"/>
         <Label Content="IP адрес:" HorizontalAlignment="Left" Height="25" Margin="10,62,0,0" VerticalAlignment="Top" Width="118"/>

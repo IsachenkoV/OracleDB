@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="TableCreationView" Height="500" Width="500" Name="TableCreation">
+        Title="TableCreationView" Height="500" Width="500" Name="TableCreation" Icon="plus.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/> 
@@ -15,15 +15,15 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         
-        <TextBlock Text="Имя таблицы" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap"/>
-        <TextBox Text="{Binding TableName}" Grid.Row="0" Grid.Column="1"/>
+        <TextBlock Text="Имя таблицы" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Black"/>
+        <TextBox Text="{Binding TableName}" Grid.Row="0" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Black"/>
         <DataGrid SelectedIndex="{Binding ElementName=TableCreation, Path=DataContext.Index, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Columns}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" CanUserDeleteRows="True" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Header="IsPrimaryKey" Binding="{Binding IsPrimaryKey}"></DataGridCheckBoxColumn>
-                <DataGridCheckBoxColumn Header="IsNotNull" Binding="{Binding IsNotNull}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="0.7*"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="IsPrimaryKey" Binding="{Binding IsPrimaryKey}" Width="1.2*"></DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn Header="IsNotNull" Binding="{Binding IsNotNull}" Width="1*"></DataGridCheckBoxColumn>
 
-                <DataGridTemplateColumn Header ="ForeignKeyTable">
+                <DataGridTemplateColumn Header ="ForeignKeyTable" Width="1.5*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding ForeignKeyTable}"/>
@@ -36,7 +36,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header ="ForeignKeyColumn">
+                <DataGridTemplateColumn Header ="ForeignKeyColumn" Width="1.6*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding ForeignKeyColumn}"/>
@@ -49,7 +49,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header ="Type">
+                <DataGridTemplateColumn Header ="Type" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type}"/>
@@ -64,7 +64,7 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <Button cal:Message.Attach ="Save" Content="Сохранить" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Width="150"/>
-        <Button cal:Message.Attach ="AddColumn" Content="Добавить столбец" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Width="150"/>
+        <Button cal:Message.Attach ="Save" Content="Сохранить" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Width="150" MaxHeight="65"/>
+        <Button cal:Message.Attach ="AddColumn" Content="Добавить столбец" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Width="150" MaxHeight="65"/>
     </Grid>
 </Window>

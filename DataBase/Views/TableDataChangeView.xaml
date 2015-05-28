@@ -1,0 +1,10 @@
+﻿<Window x:Class="DataBase.Views.TableDataChangeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TableDataChangeView" Height="300" Width="300">
+    <Grid>
+        <DataGrid CanUserSortColumns="False" CanUserReorderColumns="False">
+            
+        </DataGrid>
+    </Grid>
+</Window>

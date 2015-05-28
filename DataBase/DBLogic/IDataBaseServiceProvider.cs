@@ -14,5 +14,6 @@ namespace DataBase.DBLogic
         List<string> GetListOfTables();
         DbDataReader ExecuteCommand(string command);
         List<string> GetFieldsOfTable(string tableName);
+        bool HaveChanges { set; get; }
     }
 }

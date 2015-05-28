@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DB.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
       <HintPath>packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
@@ -81,8 +84,9 @@
     <Compile Include="ViewModels\CommandResultViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\TableChangeViewModel.cs" />
+    <Compile Include="ViewModels\TableDataChangeViewModel.cs" />
     <Compile Include="ViewModels\TableCreationViewModel.cs" />
+    <Compile Include="ViewModels\TableStructChangeViewModel.cs" />
     <Compile Include="Views\CommandExecutionView.xaml.cs">
       <DependentUpon>CommandExecutionView.xaml</DependentUpon>
     </Compile>
@@ -100,11 +104,14 @@
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableChangeView.xaml.cs">
-      <DependentUpon>TableChangeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TableCreationView.xaml.cs">
       <DependentUpon>TableCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableDataChangeView.xaml.cs">
+      <DependentUpon>TableDataChangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableStructChangeView.xaml.cs">
+      <DependentUpon>TableStructChangeView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CommandExecutionView.xaml">
       <SubType>Designer</SubType>
@@ -122,11 +129,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TableChangeView.xaml">
+    <Page Include="Views\TableCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TableCreationView.xaml">
+    <Page Include="Views\TableDataChangeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TableStructChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +173,20 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Hopstarter-Plastic-Mini-Database-Add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DB.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\DB.ico" />
+    <Resource Include="Views\Db2.ico" />
+    <Resource Include="Views\plus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\page.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

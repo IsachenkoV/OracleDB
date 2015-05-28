@@ -1,6 +1,6 @@
 ﻿<Window x:Class="DataBase.Views.CommandResultView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CommandResultView" Height="600" Width="600">
+        Title="CommandResultView" Height="600" Width="600" Icon="page.ico">
     <DataGrid ItemsSource="{Binding DataReader}" CanUserSortColumns="True"/>
 </Window>

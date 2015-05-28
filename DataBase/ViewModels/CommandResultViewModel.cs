@@ -18,6 +18,7 @@ namespace DataBase.ViewModels
         public CommandResultViewModel(DbDataReader dr)
         {
             DataReader = dr;
+            DisplayName = "Result:";
         }
 
         ~CommandResultViewModel()

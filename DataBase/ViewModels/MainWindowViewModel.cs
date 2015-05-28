@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using DataBase.DBLogic;
+using DataBase.Properties;
 
 namespace DataBase.ViewModels
 {
     class MainWindowViewModel : Screen
     {
-        private IWindowManager _manager;
-        private IDataBaseServiceProvider _provider;
+        private readonly IWindowManager _manager;
+        private readonly IDataBaseServiceProvider _provider;
         private string _curTableName;
  
         public string CurTableName {
@@ -50,19 +52,31 @@ namespace DataBase.ViewModels
 
         public void CreateNewTable()
         {
-            _manager.ShowWindow(new TableCreationViewModel(_manager, _provider));
+            _manager.ShowWindow(new TableCreationViewModel(_provider));
         }
 
-        public void ChangeTable()
+        public void ChangeTableData()
         {
-            if (TableNames.Contains(CurTableName))
+            if (CurTableName!= null && TableNames.Contains(CurTableName.ToUpper()))
             {
-                _manager.ShowWindow(new TableChangeViewModel(_manager, _provider, CurTableName));
+                _manager.ShowWindow(new TableDataChangeViewModel(_manager, _provider, CurTableName));
             }
             else
             {
-                MessageBox.Show("Выбранной таблицы нет в списке", "Error");
+                MessageBox.Show(Resources.NoThatTable, Resources.ErrorMessage);
             }
+        }
+
+        public void ChangeTableStruct()
+        {
+            if (CurTableName != null && TableNames.Contains(CurTableName.ToUpper()))
+            {
+                _manager.ShowWindow(new TableStructChangeViewModel());
+            }
+            else
+            {
+                MessageBox.Show(Resources.NoThatTable, Resources.ErrorMessage);
+            }            
         }
 
         public void ExecuteCommand()

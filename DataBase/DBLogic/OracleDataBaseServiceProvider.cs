@@ -18,6 +18,8 @@ namespace DataBase.DBLogic
         private List<string> _tableNames;
         private BindableCollection<string> _observableTableCollection;
 
+        public bool HaveChanges { set; get; }
+
         public OracleDataBaseServiceProvider(string ip, string tblspace, string user, string pass)
         {
             _tablespace = tblspace;
@@ -54,7 +56,7 @@ namespace DataBase.DBLogic
 
         public List<string> GetListOfTables()
         {
-            if (_tableNames != null)
+            if (_tableNames != null && !HaveChanges)
                 return _tableNames;
 
             _tableNames = new List<string>();
@@ -74,6 +76,7 @@ namespace DataBase.DBLogic
                     _tableNames = names.ToList();
                 }
             }
+            HaveChanges = false;
             return _tableNames;
         }
 
