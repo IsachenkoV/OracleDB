@@ -88,6 +88,15 @@ namespace DataBase.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на SELECT column_name, data_type, nullable, primary_key, foreign_key, fk_symbol, source_table, source_column FROM ( SELECT column_name, data_type, nullable FROM all_tab_columns WHERE table_name = &apos;{0}&apos; ) LEFT JOIN ( SELECT constraint_type AS primary_key, column_name AS primary_name FROM all_cons_columns INNER JOIN all_constraints ON all_cons_columns.table_name = all_constraints.table_name AND all_cons_columns.constraint_name = all_constraints.constraint_name AND constraint_type = &apos;P&apos; AND all_constraints.table_ [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string JaiQuery {
+            get {
+                return ResourceManager.GetString("JaiQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Table does not exist.
         /// </summary>
         internal static string NoThatTable {

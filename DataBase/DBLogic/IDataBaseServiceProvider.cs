@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -19,5 +20,6 @@ namespace DataBase.DBLogic
         DataTable GetContentOfTable(string tableName);
         void UpdateContentOfTable(string tableName, DataTable content);
         void DeleteTable(string tableName);
+        DbDataReader GetInfoOfTable(string tableName);
     }
 }

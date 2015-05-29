@@ -132,4 +132,7 @@
   <data name="DeleteSuccess" xml:space="preserve">
     <value>Table dropped!</value>
   </data>
+  <data name="JaiQuery" xml:space="preserve">
+    <value>SELECT column_name, data_type, nullable, primary_key, foreign_key, fk_symbol, source_table, source_column FROM ( SELECT column_name, data_type, nullable FROM all_tab_columns WHERE table_name = '{0}' ) LEFT JOIN ( SELECT constraint_type AS primary_key, column_name AS primary_name FROM all_cons_columns INNER JOIN all_constraints ON all_cons_columns.table_name = all_constraints.table_name AND all_cons_columns.constraint_name = all_constraints.constraint_name AND constraint_type = 'P' AND all_constraints.table_name = '{0}' ) ON column_name = primary_name LEFT JOIN ( SELECT foreign_key, fk_symbol, foreign_name, table_name AS source_table, column_name AS source_column FROM ( SELECT all_cons_columns.constraint_name AS fk_symbol, constraint_type AS foreign_key, column_name AS foreign_name, r_constraint_name, position AS ref_position FROM all_cons_columns INNER JOIN all_constraints ON all_cons_columns.table_name = all_constraints.table_name AND all_cons_columns.constraint_name = all_constraints.constraint_name AND constraint_type = 'R' AND all_constraints.table_name = '{0}' ) INNER JOIN all_cons_columns ON r_constraint_name = all_cons_columns.constraint_name AND position = ref_position ) ON column_name = foreign_name</value>
+  </data>
 </root>

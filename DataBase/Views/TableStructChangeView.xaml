@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="TableStructChangeView" Height="500" Width="500" Icon="page.ico">
+        Title="TableStructChangeView" Height="500" Width="500" Icon="page.ico" Name="TableStructChange">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Имя таблицы" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" TextWrapping="NoWrap" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Black"/>
-        <TextBox Text="{Binding TableName}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Black"/>
-        <DataGrid SelectedIndex="{Binding ElementName=TableCreation, Path=DataContext.Index, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Columns}" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" CanUserDeleteRows="True" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False">
+        <TextBox Text="{Binding TableName, UpdateSourceTrigger = PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Black"/>
+        <DataGrid SelectedIndex="{Binding ElementName = TableStructChange, Path=DataContext.Index, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Columns}" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" CanUserDeleteRows="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="0.7*"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="IsPrimaryKey" Binding="{Binding IsPrimaryKey}" Width="1.2*"></DataGridCheckBoxColumn>
@@ -32,7 +32,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedValue="{Binding Path=ForeignKeyTable, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.TableList, NotifyOnSourceUpdated=True}"/>
+                            <ComboBox SelectedValue="{Binding Path=ForeignKeyTable, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableStructChange, Path=DataContext.TableList, NotifyOnSourceUpdated=True}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -45,7 +45,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedValue="{Binding Path=ForeignKeyColumn, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.FieldList, NotifyOnSourceUpdated=True}"/>
+                            <ComboBox SelectedValue="{Binding Path=ForeignKeyColumn, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableStructChange, Path=DataContext.FieldList, NotifyOnSourceUpdated=True}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -58,7 +58,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedValue="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableCreation, Path=DataContext.TypeList, NotifyOnSourceUpdated=True}"/>
+                            <ComboBox SelectedValue="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=TableStructChange, Path=DataContext.TypeList, NotifyOnSourceUpdated=True}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>

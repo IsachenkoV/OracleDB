@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using DataBase.Properties;
 using Oracle.ManagedDataAccess.Client;
 
 namespace DataBase.DBLogic
@@ -17,7 +18,6 @@ namespace DataBase.DBLogic
         private string _tablespace;
         private string _userName;
         private List<string> _tableNames;
-        private BindableCollection<string> _observableTableCollection;
 
         public bool HaveChanges { set; get; }
         public DataTable GetContentOfTable(string tableName)
@@ -52,6 +52,15 @@ namespace DataBase.DBLogic
         {
             var text = string.Format("drop table {0}", tableName);
             ExecuteCommand(text);
+        }
+
+        public DbDataReader GetInfoOfTable(string tableName)
+        {
+            using (var c = _connection.CreateCommand())
+            {
+                c.CommandText = string.Format(Resources.JaiQuery, tableName);
+                return c.ExecuteReader();
+            }
         }
 
         public OracleDataBaseServiceProvider(string ip, string tblspace, string user, string pass)
@@ -111,6 +120,7 @@ namespace DataBase.DBLogic
                 }
             }
             HaveChanges = false;
+            _tableNames.Insert(0, "");
             return _tableNames;
         }
 

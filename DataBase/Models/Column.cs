@@ -18,6 +18,22 @@ namespace DataBase.Models
         private string _foreignKeyColumn;
         private string _type;
 
+        public Column()
+        {}
+
+        public Column(Column column)
+        {
+            Name = column.Name;
+            IsPrimaryKey = column.IsPrimaryKey;
+            IsNotNull = column.IsNotNull;
+            ForeignKeyTable = column.ForeignKeyTable;
+            ForeignKeyColumn = column.ForeignKeyColumn;
+            Type = column.Type;
+            Id = column.Id;
+            ForeignKey = column.ForeignKey;
+            ForKeyName = column.ForKeyName;
+        }
+
         public string Name
         {
             set
@@ -53,9 +69,6 @@ namespace DataBase.Models
             get { return _isNotNull; }
         }
 
-        //public BindableCollection<string> ForeignKeyTable { set; get; }
-        //public BindableCollection<string> ForeignKeyColumn { set; get; } 
-
         public string ForeignKeyTable
         {
             set
@@ -90,5 +103,11 @@ namespace DataBase.Models
             }
             get { return _type; }
         }
+
+        public int Id { set; get; }
+
+        public bool ForeignKey { set; get; }
+
+        public string ForKeyName { set; get; }
     }
 }
