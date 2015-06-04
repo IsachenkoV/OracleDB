@@ -37,7 +37,15 @@ namespace DataBase.ViewModels
             _provider = provider;
             _tableName = tableName;
             DisplayName = string.Concat("Change table: ", tableName);
-            Content = _provider.GetContentOfTable(_tableName);
+            try
+            {
+                Content = _provider.GetContentOfTable(_tableName);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, Resources.ErrorMessage);
+                TryClose();
+            }
         }
 
         public void Commit()
@@ -55,6 +63,11 @@ namespace DataBase.ViewModels
 
             if (success)
                 MessageBox.Show(Resources.CompletedSuccessfully, Resources.SuccessMessage);
+        }
+
+        ~TableDataChangeViewModel()
+        {
+            _content.Dispose();
         }
     }
 }

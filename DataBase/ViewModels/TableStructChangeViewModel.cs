@@ -328,7 +328,7 @@ namespace DataBase.ViewModels
                 {
                     //delete old
                     string text;
-                    if (!string.IsNullOrWhiteSpace(c.ForeignKeyTable))
+                    if (!string.IsNullOrWhiteSpace(_oldColumns[c.Id].ForeignKeyTable))
                     {
                         text = string.Concat("alter table ", TableName, " drop constraint ", c.ForKeyName);
                         try

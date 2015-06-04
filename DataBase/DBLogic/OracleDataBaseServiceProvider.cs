@@ -17,9 +17,27 @@ namespace DataBase.DBLogic
         private OracleConnection _connection;
         private string _tablespace;
         private string _userName;
+
         private List<string> _tableNames;
 
         public bool HaveChanges { set; get; }
+
+        public OracleDataBaseServiceProvider(string ip, string tblspace, string user, string pass)
+        {
+            _tablespace = tblspace;
+            _userName = user;
+            var b = new OracleConnectionStringBuilder
+            {
+                DataSource = ip,
+                UserID = user,
+                Password = pass,
+                ValidateConnection = true
+            };
+
+            _connection = new OracleConnection(b.ToString());
+            _connection.Open();
+        }
+
         public DataTable GetContentOfTable(string tableName)
         {
             using (var c = _connection.CreateCommand())
@@ -41,9 +59,11 @@ namespace DataBase.DBLogic
                 c.CommandText = string.Format("select * from {0}", tableName);
                 using (var adapter = new OracleDataAdapter(c))
                 {
-                    var builder = new OracleCommandBuilder(adapter);
-                    adapter.UpdateCommand = builder.GetUpdateCommand();
-                    adapter.Update(content);
+                    using (var builder = new OracleCommandBuilder(adapter))
+                    {
+                        adapter.UpdateCommand = builder.GetUpdateCommand();
+                        adapter.Update(content);
+                    }
                 }
             }
         }
@@ -61,22 +81,6 @@ namespace DataBase.DBLogic
                 c.CommandText = string.Format(Resources.JaiQuery, tableName);
                 return c.ExecuteReader();
             }
-        }
-
-        public OracleDataBaseServiceProvider(string ip, string tblspace, string user, string pass)
-        {
-            _tablespace = tblspace;
-            _userName = user;
-            var b = new OracleConnectionStringBuilder
-            {
-                DataSource = ip,
-                UserID = user,
-                Password = pass,
-                ValidateConnection = true
-            };
-
-            _connection = new OracleConnection(b.ToString());
-            _connection.Open();
         }
 
         public List<string> GetFieldsOfTable(string tableName)
